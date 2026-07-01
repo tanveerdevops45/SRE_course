@@ -1,5 +1,6 @@
-1. File \& Directory Management
+##1. File \& Directory Management
 
+```
 ls          # List files
 cd          # Change directory
 pwd         # Show current directory
@@ -8,6 +9,7 @@ rm          # Remove files/directories
 cp          # Copy files
 mv          # Move/rename files
 touch       # Create empty file
+```
 
 2. File Viewing \& Text Processing
 
