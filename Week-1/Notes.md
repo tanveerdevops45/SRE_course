@@ -1,4 +1,4 @@
-##1. File \& Directory Management
+##1. File & Directory Management
 
 ```
 ls          # List files
@@ -11,8 +11,9 @@ mv          # Move/rename files
 touch       # Create empty file
 ```
 
-2. File Viewing \& Text Processing
+##2. File Viewing \& Text Processing
 
+```
 cat         # View file content
 less        # Scroll through file
 head        # First few lines
@@ -22,11 +23,11 @@ grep        # Search text
 awk         # Data processing
 sed         # Stream editing
 cut         # Extract columns
+```
 
+##3. System Monitoring Commands
 
-3. System Monitoring Commands
-
-
+```
 top         # Real-time processes
 htop        # Better version of top
 free -m     # Memory usage
@@ -34,18 +35,22 @@ df -h       # Disk usage
 du -sh      # Folder size
 uptime      # System uptime
 ps aux      # Running processes
+```
 
-4. Process Management
+##4. Process Management
 
+```
 kill        # Kill a process
 kill -9     # Force kill
 pkill       # Kill by name
 bg          # Resume in background
 fg          # Resume in foreground
 jobs        # Show background jobs
+```
 
-5. Networking Commands
+##5. Networking Commands
 
+```
 ping        # Check connectivity
 curl        # Call APIs
 wget        # Download files
@@ -54,11 +59,10 @@ ss          # Socket statistics
 ifconfig    # Network config (older)
 ip addr     # New network command
 nslookup    # DNS lookup
+```
 
-
-6. Package Management (Installation)
-
-
+##6. Package Management (Installation)
+```
 Ubuntu/Debian:
   apt update
   apt install nginx
@@ -67,37 +71,41 @@ Ubuntu/Debian:
 RHEL/CentOS:
   yum install nginx
   dnf install nginx
+```
 
+##7. User & Permission Management
 
-7. User & Permission Management
-
+```
 whoami      #check current user
 chmod       # Change permissions
 chown       # Change ownership
 useradd     # Add user
 usermod     # Modify user
 passwd      # Change password
+```
 
+##8. Log & Debugging Commands
 
-8. Log & Debugging Commands
-
+```
 journalctl      # View system logs
 dmesg           # Kernel logs
 tail -f /var/log/syslog
+```
 
+##9. Archiving & Compression
 
-9. Archiving & Compression
-
+```
 tar -cvf file.tar dir/
 tar -xvf file.tar
 gzip file
 gunzip file.gz
 zip / unzip
+```
 
+##File Search and I/O Redirection
+##10. File Search Commands 
 
-File Search and I/O Redirection
-10. File Search Commands 
-
+```
 find /path -name "file.txt"     # search for a file by name in a given path
 find . -type f                 # find all files in current directory
 find /var/log -name "\*.log"    # find all .log files in /var/log
@@ -113,9 +121,11 @@ grep -r "error" /logs          # search recursively inside directory
 
 which python                   # show path of executable (where command is located)
 whereis nginx                  # show binary, source, and manual location of a command
+```
 
-11. I/O Redirection Commands
+##11. I/O Redirection Commands
 
+```
 ls > files.txt                 # save output of ls into file (overwrites file)
 echo "Hello" >> file.txt       # append "Hello" to file (does not overwrite)
 wc -l < file.txt               # use file.txt as input to count number of lines
@@ -139,21 +149,23 @@ grep → search inside files
 2> → redirect errors
 | → pass output to another command
 tee → display + save output
+```
 
+##12. Useful Shortcuts & Tricks
 
-12. Useful Shortcuts & Tricks
-
+```
 history         # Show command history
 clear           # Clear screen
 alias           # Create shortcut
 echo            # Print output
 export          # Set environment variable
+```
 
-Vi Editor: Modes and Shortcuts
+##Vi Editor: Modes and Shortcuts
 
-13. Vi/Vim Editor Modes
+##13. Vi/Vim Editor Modes
 
-Basic Command List:
+```Basic Command List:
 
 :i    # insert before cursor
 :w        # save file
@@ -165,9 +177,9 @@ yy       # copy (yank) line
 /word        # search forward
 ?word        # search backward
 n            # next match
+```
 
-
-Exhaustive commands list:
+```Exhaustive commands list:
 
 
 1. Normal Mode (Default Mode)
@@ -222,6 +234,7 @@ Useful DevOps Shortcuts:
 :set number      # show line numbers
 :set nonumber    # hide line numbers
 :set ignorecase  # case-insensitive search
+```
 
 Users, Groups, and File Permissions
 What is a Cron Job?
@@ -236,7 +249,7 @@ Why Cron Jobs are Important (DevOps Usage)
 ✅ Monitor systems
 ✅ Schedule deployments
 
-📂 Cron Job Syntax
+```Cron Job Syntax
 
 * * * * * 
 │ │ │ │ │
@@ -245,16 +258,16 @@ Why Cron Jobs are Important (DevOps Usage)
 │ │ └────── Day of month (1–31)
 │ └──────── Hour (0–23)
 └────────── Minute (0–59)
+```
 
 
-
-
+```
 * * * * * command 👉 Runs every minute
 0 * * * * command 👉 Runs every hour
 0 2 * * * command 👉 Runs daily at 2 AM
 0 0 * * 0 command 👉 Runs every Sunday at midnight
 */5 * * * * command 👉 Runs every 5 minutes
-
+```
 
 crontab -e  	#Edit Cron Jobs
 crontab -l	#List Cron Jobs
@@ -265,39 +278,36 @@ Real DevOps Examples:
 🔹 1. Backup script daily
 
 0 1 * * * /home/user/backup.sh
-
-# runs backup script every day at 1 AM
+runs backup script every day at 1 AM
 
 🔹 2. Delete old logs
 
 0 3 * * * find /var/log -name "\*.log" -mtime +7 -delete
-
-# deletes logs older than 7 days at 3 AM
+deletes logs older than 7 days at 3 AM
 
 🔹 3. Monitor server every 5 mins
 
 */5 * * * * /home/user/check\_server.sh
-
-# runs monitoring script every 5 minutes
+runs monitoring script every 5 minutes
 
 🔹 4. Save output to log file
 
 0 * * * * /script.sh >> /var/log/script.log 2>&1
+run script every hour and log output \& errors
 
-# run script every hour and log output \& errors
 
-
-Important Files
+```Important Files
 
 /etc/crontab	# system-wide cron jobs
 /etc/cron.d/	# additional cron jobs
 /etc/cron.daily
 /etc/cron.hourly
 /etc/cron.weekly
+```
 
-# predefined job directories
+## predefined job directories
 
-Basic Networking and Iptables:
+##Basic Networking and Iptables:
 
 🌐 PART 1: Basic Networking (Linux)
 
@@ -331,8 +341,7 @@ UDP → faster, no guarantee (used by streaming, DNS)
 
 
 
-🛠️ Basic Networking Commands
-
+```Basic Networking Commands
 ip addr               # show IP address
 ip route              # show routing table
 ping google.com       # test connectivity
@@ -341,7 +350,7 @@ netstat -tuln         # older version of above
 curl http://example.com   # test HTTP request
 wget http://file.com      # download file
 nslookup google.com   # DNS lookup
-
+```
 
 🔥 PART 2: IPTables (Firewall):
 
@@ -371,8 +380,7 @@ ACCEPT → allow
 DROP → block silently
 REJECT → block with response
 
-🛠️ Basic IPTables Commands
-
+```Basic IPTables Commands
 iptables -L		# list all firewall rules
 iptables -L -n -v	# show detailed rules with IPs and packet count	
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT	# allow SSH (port 22)
@@ -384,7 +392,7 @@ iptables -D INPUT -p tcp --dport 80 -j ACCEPT	# remove HTTP rule
 iptables -F	# delete all rules
 iptables-save > /etc/iptables.rules	#Save rules
 iptables-restore < /etc/iptables.rules	#Restore rules
-
+```
 
 🔐 Common Use Cases in DevOps
 ✅ Secure server access
@@ -426,10 +434,11 @@ fdisk /dev/sda   # create/manage partitions
 
 A filesystem organizes how data is stored
 Without it → data cannot be used
-Common types:
+```Common types:
 ext4 (most common in Linux)
 xfs (used in enterprise)
 vfat (for USB drives)
+```
 
 👉 Create filesystem: mkfs.ext4 /dev/sda1
 
@@ -465,8 +474,9 @@ Better management
 🧩 LVM Structure:
 
 Physical Volume (PV)
-      ↓
 
+       ↓
+       
 Volume Group (VG)
 
       ↓
