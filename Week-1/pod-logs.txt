@@ -1,0 +1,66 @@
+2026-07-03T08:30:11.234Z INFO  1 --- [           main] c.company.payment.PaymentApplication : Starting PaymentApplication v2.4.1
+2026-07-03T08:30:11.246Z INFO  1 --- [           main] c.company.payment.PaymentApplication : No active profile set, falling back to default profile: "prod"
+2026-07-03T08:30:11.508Z INFO  1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8080 (http)
+2026-07-03T08:30:11.613Z INFO  1 --- [           main] o.apache.catalina.core.StandardService  : Starting service [Tomcat]
+2026-07-03T08:30:11.615Z INFO  1 --- [           main] o.apache.catalina.core.StandardEngine   : Starting Servlet engine: Apache Tomcat/10.1.18
+2026-07-03T08:30:11.842Z INFO  1 --- [           main] o.s.web.context.ContextLoader           : Root WebApplicationContext initialized
+2026-07-03T08:30:12.004Z INFO  1 --- [           main] c.company.payment.config.DatabaseConfig : Loading PostgreSQL configuration
+2026-07-03T08:30:12.118Z INFO  1 --- [           main] com.zaxxer.hikari.HikariDataSource      : HikariPool-1 - Starting...
+2026-07-03T08:30:12.864Z INFO  1 --- [           main] com.zaxxer.hikari.HikariDataSource      : HikariPool-1 - Start completed.
+2026-07-03T08:30:13.105Z INFO  1 --- [           main] org.flywaydb.core.Flyway                : Flyway Community Edition 9.22.0
+2026-07-03T08:30:13.476Z INFO  1 --- [           main] org.flywaydb.core.Flyway                : Successfully validated 12 migrations
+2026-07-03T08:30:13.911Z INFO  1 --- [           main] org.flywaydb.core.Flyway                : Current version of schema "public": 12
+2026-07-03T08:30:14.112Z INFO  1 --- [           main] c.company.payment.config.RedisConfig    : Connecting to Redis at redis:6379
+2026-07-03T08:30:14.258Z INFO  1 --- [           main] io.lettuce.core.RedisClient             : Redis connection established
+2026-07-03T08:30:14.462Z INFO  1 --- [           main] c.company.payment.kafka.KafkaConsumer   : Initializing Kafka consumer
+2026-07-03T08:30:15.007Z INFO  1 --- [           main] o.a.k.clients.consumer.ConsumerConfig   : Consumer group: payment-group
+2026-07-03T08:30:15.402Z INFO  1 --- [           main] c.company.payment.kafka.KafkaConsumer   : Subscribed to topic: payment-events
+2026-07-03T08:30:15.820Z INFO  1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080
+2026-07-03T08:30:15.933Z INFO  1 --- [           main] c.company.payment.PaymentApplication    : Started PaymentApplication in 4.78 seconds
+2026-07-03T08:31:01.116Z INFO  1 --- [nio-8080-exec-1] c.company.payment.controller.HealthCtrl : GET /actuator/health
+2026-07-03T08:31:01.120Z INFO  1 --- [nio-8080-exec-1] c.company.payment.controller.HealthCtrl : Health check successful
+2026-07-03T08:31:12.481Z INFO  1 --- [nio-8080-exec-2] c.company.payment.controller.PaymentApi : POST /api/v1/payment
+2026-07-03T08:31:12.485Z INFO  1 --- [nio-8080-exec-2] c.company.payment.service.PaymentService: Processing payment request
+2026-07-03T08:31:12.912Z INFO  1 --- [nio-8080-exec-2] c.company.payment.service.PaymentService: Fetching customer details
+2026-07-03T08:31:13.336Z INFO  1 --- [nio-8080-exec-2] c.company.payment.repository.CustomerRepo: Customer found: ID=10452
+2026-07-03T08:31:13.608Z INFO  1 --- [nio-8080-exec-2] c.company.payment.service.PaymentService: Calculating payment amount
+2026-07-03T08:31:13.951Z INFO  1 --- [nio-8080-exec-2] c.company.payment.service.PaymentService: Saving payment transaction
+2026-07-03T08:31:14.218Z INFO  1 --- [nio-8080-exec-2] c.company.payment.kafka.EventPublisher  : Published PaymentCreated event
+2026-07-03T08:31:14.325Z INFO  1 --- [nio-8080-exec-2] c.company.payment.controller.PaymentApi : Response status=201
+2026-07-03T08:32:05.105Z INFO  1 --- [payment-group-0] c.company.payment.kafka.KafkaListener   : Received message: PaymentConfirmed
+2026-07-03T08:32:05.411Z INFO  1 --- [payment-group-0] c.company.payment.service.Notification  : Sending email notification
+2026-07-03T08:32:06.027Z INFO  1 --- [payment-group-0] c.company.payment.service.Notification  : Email sent successfully
+2026-07-03T08:33:18.211Z WARN  1 --- [nio-8080-exec-3] c.company.payment.service.PaymentService: Retrying external payment gateway
+2026-07-03T08:33:19.842Z WARN  1 --- [nio-8080-exec-3] c.company.payment.service.PaymentService: Gateway timeout after 5 seconds
+2026-07-03T08:33:20.018Z INFO  1 --- [nio-8080-exec-3] c.company.payment.service.PaymentService: Retry attempt 2
+2026-07-03T08:33:22.427Z INFO  1 --- [nio-8080-exec-3] c.company.payment.service.PaymentService: Payment gateway responded successfully
+2026-07-03T08:34:11.582Z INFO  1 --- [nio-8080-exec-4] c.company.payment.controller.PaymentApi : GET /api/v1/payment/10452
+2026-07-03T08:34:11.886Z INFO  1 --- [nio-8080-exec-4] c.company.payment.repository.PaymentRepo: Payment record found
+2026-07-03T08:34:12.013Z INFO  1 --- [nio-8080-exec-4] c.company.payment.controller.PaymentApi : Response status=200
+2026-07-03T08:35:08.307Z INFO  1 --- [housekeeper] com.zaxxer.hikari.pool.HikariPool       : Pool stats (total=10, active=1, idle=9)
+2026-07-03T08:36:10.119Z WARN  1 --- [nio-8080-exec-5] c.company.payment.service.RedisCache    : Cache miss for customer ID=20881
+2026-07-03T08:36:10.621Z INFO  1 --- [nio-8080-exec-5] c.company.payment.service.RedisCache    : Loading customer from database
+2026-07-03T08:36:11.013Z INFO  1 --- [nio-8080-exec-5] c.company.payment.service.RedisCache    : Cache updated
+2026-07-03T08:37:15.440Z INFO  1 --- [nio-8080-exec-6] c.company.payment.controller.PaymentApi : POST /api/v1/payment
+2026-07-03T08:37:16.151Z ERROR 1 --- [nio-8080-exec-6] c.company.payment.service.PaymentService: Payment gateway returned HTTP 500
+2026-07-03T08:37:16.154Z ERROR 1 --- [nio-8080-exec-6] c.company.payment.exception.GlobalExceptionHandler : Payment processing failed
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:186)
+	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
+	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
+	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
+	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
+2026-07-03T08:37:17.005Z INFO  1 --- [nio-8080-exec-6] c.company.payment.controller.PaymentApi : Response status=500
+2026-07-03T08:38:04.227Z INFO  1 --- [housekeeper] com.zaxxer.hikari.pool.HikariPool       : Pool stats (total=10, active=2, idle=8)
+2026-07-03T08:39:14.120Z INFO  1 --- [nio-8080-exec-7] c.company.payment.controller.HealthCtrl : GET /actuator/health
+2026-07-03T08:39:14.124Z INFO  1 --- [nio-8080-exec-7] c.company.payment.controller.HealthCtrl : Health check successful
+2026-07-03T08:40:10.332Z INFO  1 --- [housekeeper] com.zaxxer.hikari.pool.HikariPool       : Pool stats (total=10, active=1, idle=9)
+2026-07-03T08:41:25.511Z INFO  1 --- [payment-group-0] c.company.payment.kafka.KafkaListener   : Received PaymentCompleted event
+2026-07-03T08:41:25.784Z INFO  1 --- [payment-group-0] c.company.payment.service.Notification  : Notification delivered successfully
+2026-07-03T08:42:10.228Z INFO  1 --- [housekeeper] com.zaxxer.hikari.pool.HikariPool       : Pool stats (total=10, active=1, idle=9)
